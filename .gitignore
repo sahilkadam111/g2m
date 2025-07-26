@@ -1,0 +1,5 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Can add other folders like /node_modules/ if you use them later
