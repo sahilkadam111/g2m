@@ -1,0 +1,1 @@
+Timestamp | Name | Phone | Jewelry Type | Grams | Email | Loan Amount | City | Message | Loan Type

@@ -123,6 +123,24 @@
         .faq-item.active .faq-icon {
             transform: rotate(45deg);
         }
+        .nav-link {
+            position: relative;
+            padding-bottom: 0.25rem; /* 4px */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, #FDE08D, #D4AF37, #A47D2A);
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
         .form-input {
             background-color: #1a1a1a;
@@ -164,6 +182,28 @@
             background: linear-gradient(90deg, #FDE08D, #D4AF37, #A47D2A);
             margin-top: 0.5rem; /* 8px */
         }
+        .footer-link {
+            display: inline-block;
+            position: relative;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .footer-link:hover {
+            transform: translateX(10px);
+        }
+        .footer-link::before {
+            content: '→';
+            position: absolute;
+            left: -1.2em;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #D4AF37;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .footer-link:hover::before {
+            opacity: 1;
+        }
+
         .gold-gradient-border::before {
             content: '';
             position: absolute;
@@ -231,12 +271,12 @@
                 <img src="pictures/GOLD2MONEY FINAL LOGO.png" alt="Gold 2 Money Logo" class="h-16 mr-3 transition-all duration-300 group-hover:scale-105 hover:gold-glow">
             </a>
             <div class="hidden lg:flex items-center space-x-8 fade-in" style="animation-delay: 0.2s;">
-                <a href="#home" class="transition-colors duration-300 hover:gold-gradient-text">Home</a>
-                <a href="#about" class="transition-colors duration-300 hover:gold-gradient-text">About Us</a>
-                <a href="#services" class="transition-colors duration-300 hover:gold-gradient-text">Services</a>
-                <a href="#why-us" class="transition-colors duration-300 hover:gold-gradient-text">Why Us</a>
-                <a href="#faq" class="transition-colors duration-300 hover:gold-gradient-text">FAQ</a>
-                <a href="#blog" class="transition-colors duration-300 hover:gold-gradient-text">Blog</a>
+                <a href="#home" class="nav-link transition-colors duration-300 hover:gold-gradient-text">Home</a>
+                <a href="#about" class="nav-link transition-colors duration-300 hover:gold-gradient-text">About Us</a>
+                <a href="#services" class="nav-link transition-colors duration-300 hover:gold-gradient-text">Services</a>
+                <a href="#why-us" class="nav-link transition-colors duration-300 hover:gold-gradient-text">Why Us</a>
+                <a href="#faq" class="nav-link transition-colors duration-300 hover:gold-gradient-text">FAQ</a>
+                <a href="#blog" class="nav-link transition-colors duration-300 hover:gold-gradient-text">Blog</a>
             </div>
             <!-- Gold Price Ticker -->
             <div id="gold-price-ticker" class="hidden lg:flex items-center space-x-2 text-sm p-2 rounded-lg bg-black/20 border border-yellow-500/20 fade-in" style="animation-delay: 0.25s; min-width: 220px;">
@@ -286,7 +326,7 @@
             <!-- Animated Gold Shimmer Overlay -->
             <div class="pointer-events-none absolute inset-0 z-10 animate-gold-shimmer" style="background: linear-gradient(120deg, rgba(255,215,0,0.08) 0%, rgba(255,255,255,0.02) 50%, rgba(255,215,0,0.08) 100%); mix-blend-mode: lighten;"></div>
             <!-- Animated Gold Sparkles (Right Side Only) -->
-            <div class="pointer-events-none absolute top-0 right-0 h-full w-1/3 z-20 flex items-center justify-end">
+            <div class="pointer-events-none absolute top-0 right-0 h-full w-full md:w-1/3 z-20 flex items-center justify-end">
                 <div class="relative w-full h-full">
                     <div class="gold-sparkle sparkle-1"></div>
                     <div class="gold-sparkle sparkle-2"></div>
@@ -303,31 +343,30 @@
                         <div class="w-full h-full flex items-end md:items-center justify-center pointer-events-auto">
                             <img src="pictures/1.jpg" alt="Gold 2 Money Hero 1" class="block object-cover w-full h-full min-h-[400px] md:min-h-0 md:h-full md:w-full" style="object-position: center;" />
                         <!-- Feature: Floating Trust Badge (top-right blank space) -->
-                        <div class="absolute top-8 right-8 md:top-12 md:right-16 z-20 flex flex-col items-end pointer-events-auto">
-                            <div class="bg-black/60 border-2 border-yellow-400 rounded-2xl px-5 py-3 flex items-center shadow-xl animate-fadeInDown">
-                                <i data-lucide="shield-check" class="h-7 w-7 gold-text mr-3"></i>
+                        <div class="absolute top-4 right-4 md:top-12 md:right-16 z-20 flex flex-col items-end pointer-events-auto w-full md:w-auto">
+                            <div class="bg-black/60 border-2 border-yellow-400 rounded-2xl px-4 py-2 md:px-5 md:py-3 flex items-center shadow-xl animate-fadeInDown">
+                                <i data-lucide="shield-check" class="h-6 w-6 md:h-7 md:w-7 gold-text mr-2 md:mr-3"></i>
                                 <div>
-                                    <span class="block font-bold text-lg gold-gradient-text">100% Secure</span>
+                                    <span class="block font-bold text-base md:text-lg gold-gradient-text">100% Secure</span>
                                     <span class="block text-xs text-gray-200">Insured Vaults</span>
                                 </div>
                             </div>
                         </div>
                         <!-- Feature: Quick Highlights Bar (moved further down) -->
-                        <div class="absolute bottom-2 right-8 md:bottom-6 md:right-16 z-20 w-[90vw] max-w-xl pointer-events-auto flex justify-end">
-                            <div class="flex flex-wrap justify-end gap-3 md:gap-6 bg-black/60 border border-yellow-400 rounded-2xl px-4 py-3 shadow-xl backdrop-blur-md animate-fadeInUp">
+                        <div class="absolute bottom-2 right-2 md:bottom-6 md:right-16 z-20 w-full md:w-[90vw] max-w-full md:max-w-xl pointer-events-auto flex flex-col md:flex-row justify-end items-end md:items-center gap-2 md:gap-6">
+                            <div class="flex flex-wrap justify-end gap-2 md:gap-6 bg-black/60 border border-yellow-400 rounded-2xl px-2 py-2 md:px-4 md:py-3 shadow-xl backdrop-blur-md animate-fadeInUp w-full md:w-auto">
                                 <div class="flex items-center space-x-2">
                                     <i data-lucide="clock" class="h-5 w-5 gold-text"></i>
-                                    <span class="text-sm md:text-base text-gray-100 font-semibold">30 Min Disbursal</span>
+                                    <span class="text-xs md:text-base text-gray-100 font-semibold">30 Min Disbursal</span>
                                 </div>
                                 <div class="flex items-center space-x-2">
                                     <i data-lucide="percent" class="h-5 w-5 gold-text"></i>
-                                    <span class="text-sm md:text-base text-gray-100 font-semibold">Lowest Interest</span>
+                                    <span class="text-xs md:text-base text-gray-100 font-semibold">Lowest Interest</span>
                                 </div>
                                 <div class="flex items-center space-x-2">
                                     <i data-lucide="award" class="h-5 w-5 gold-text"></i>
-                                    <span class="text-sm md:text-base text-gray-100 font-semibold">RBI Registered</span>
+                                    <span class="text-xs md:text-base text-gray-100 font-semibold">RBI Registered</span>
                                 </div>
-                                <!-- Removed Pan-India Branches -->
                             </div>
                         </div>
                         </div>
@@ -337,12 +376,6 @@
                         <div class="w-full h-full flex items-end md:items-center justify-center relative">
                             <img src="pictures/2.jpg" alt="Gold 2 Money Hero 2" class="block object-cover w-full h-full min-h-[400px] md:min-h-0 md:h-full md:w-full" style="object-position: center;" />
                         <!-- Feature: Floating Gold Price Badge (top-left blank space) -->
-                        <div class="absolute top-8 left-8 md:top-12 md:left-16 z-20 flex flex-col items-start pointer-events-auto">
-                            <div class="bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 text-black font-bold px-6 py-3 rounded-2xl shadow-xl animate-fadeInDown border-2 border-yellow-600">
-                                <i data-lucide="gem" class="h-6 w-6 inline-block mr-2 gold-text"></i>
-                                ₹9,800/gram (24K)
-                            </div>
-                        </div>
                     <!-- Feature: 5-Star Customer Rating (bottom-right blank space) -->
                     <div class="absolute bottom-8 right-8 md:bottom-12 md:right-16 z-20 flex flex-col items-end pointer-events-auto">
                         <div class="bg-black/60 border border-yellow-400 rounded-2xl px-5 py-3 flex flex-col items-end shadow-xl animate-fadeInUp">
@@ -380,7 +413,7 @@
             <!-- Startup Offers Badge -->
             <div class="absolute top-6 left-1/2 -translate-x-1/2 z-30 flex items-center bg-gradient-to-r from-yellow-500 via-yellow-300 to-yellow-400 text-black font-bold px-6 py-2 rounded-full shadow-2xl border-2 border-yellow-600 animate-fadeInDown cursor-pointer hover:scale-105 transition-transform" style="min-width: 220px;">
                 <i data-lucide="gift" class="h-5 w-5 mr-2 gold-text"></i>
-                <span>Startup Offers: <span class="underline">0% Processing Fee</span> for New Customers!</span>
+                <span class="text-xs md:text-base">Startup Offers: <span class="underline">0% Processing Fee</span> for New Customers!</span>
             </div>
             <!-- Hero Taglines Overlay (Enhanced) -->
             <div class="absolute inset-0 flex flex-col justify-start items-center md:items-end z-20 p-4 pt-24 md:p-16 md:pt-32">
@@ -446,6 +479,46 @@
                 </div>
             </div>
         </section>
+        <!-- What is Gold Loan & Its Benefits Section -->
+        <section id="about-gold-loan" class="section-padding dark-bg">
+            <div class="container mx-auto px-4 lg:px-6">
+                <div class="max-w-3xl mx-auto text-center" data-aos="fade-up">
+                    <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-6">What is a <span class="gold-gradient-text">Gold Loan?</span></h2>
+                    <p class="text-gray-300 mb-6 text-lg">A gold loan is a secured loan where you pledge your gold jewelry as collateral to receive instant funds. It is one of the fastest and most convenient ways to meet your financial needs without selling your precious assets. The loan amount is determined by the purity and weight of your gold, and you retain ownership while repaying the loan.</p>
+                    <h3 class="font-playfair text-2xl font-bold mb-4 gold-gradient-text">Benefits of a Gold Loan</h3>
+                    <ul class="text-left text-gray-300 mb-8 max-w-xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <li class="flex items-start gap-3 bg-black/40 rounded-xl p-4 border border-yellow-500/20 gold-glow">
+                            <i data-lucide="zap" class="h-6 w-6 gold-text flex-shrink-0"></i>
+                            <span>Quick and hassle-free disbursal</span>
+                        </li>
+                        <li class="flex items-start gap-3 bg-black/40 rounded-xl p-4 border border-yellow-500/20 gold-glow">
+                            <i data-lucide="file-text" class="h-6 w-6 gold-text flex-shrink-0"></i>
+                            <span>Minimal documentation required</span>
+                        </li>
+                        <li class="flex items-start gap-3 bg-black/40 rounded-xl p-4 border border-yellow-500/20 gold-glow">
+                            <i data-lucide="percent" class="h-6 w-6 gold-text flex-shrink-0"></i>
+                            <span>Competitive interest rates</span>
+                        </li>
+                        <li class="flex items-start gap-3 bg-black/40 rounded-xl p-4 border border-yellow-500/20 gold-glow">
+                            <i data-lucide="shield-check" class="h-6 w-6 gold-text flex-shrink-0"></i>
+                            <span>No impact on your credit score</span>
+                        </li>
+                        <li class="flex items-start gap-3 bg-black/40 rounded-xl p-4 border border-yellow-500/20 gold-glow">
+                            <i data-lucide="refresh-cw" class="h-6 w-6 gold-text flex-shrink-0"></i>
+                            <span>Flexible repayment options</span>
+                        </li>
+                        <li class="flex items-start gap-3 bg-black/40 rounded-xl p-4 border border-yellow-500/20 gold-glow">
+                            <i data-lucide="lock" class="h-6 w-6 gold-text flex-shrink-0"></i>
+                            <span>You retain ownership of your gold</span>
+                        </li>
+                        <li class="flex items-start gap-3 bg-black/40 rounded-xl p-4 border border-yellow-500/20 gold-glow">
+                            <i data-lucide="home" class="h-6 w-6 gold-text flex-shrink-0"></i>
+                            <span>Safe and secure storage of pledged gold</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
         <!-- About Us Section -->
         <section id="about" class="section-padding dark-bg">
@@ -507,15 +580,15 @@
                             <p class="text-gray-400 text-lg mb-2">Loan Details</p>
                             <div class="mb-2">
                                 <span class="text-gray-400">Loan Amount: </span>
-                                <span id="loanAmount" class="font-playfair text-2xl md:text-3xl font-bold gold-gradient-text">₹0</span>
+                                <span id="loanAmount" class="text-2xl md:text-3xl font-bold gold-gradient-text">₹0</span>
                             </div>
                             <div class="mb-2">
                                 <span class="text-gray-400">Interest: </span>
-                                <span id="interestAmount" class="font-playfair text-2xl md:text-3xl font-bold gold-gradient-text">₹0</span>
+                                <span id="interestAmount" class="text-2xl md:text-3xl font-bold gold-gradient-text">₹0</span>
                             </div>
                             <div class="mb-2">
                                 <span class="text-gray-400">Total Payable: </span>
-                                <span id="totalPayable" class="font-playfair text-2xl md:text-3xl font-bold gold-gradient-text">₹0</span>
+                                <span id="totalPayable" class="text-2xl md:text-3xl font-bold gold-gradient-text">₹0</span>
                             </div>
                             <p class="text-xs text-gray-500 mt-4">
                                 *This is an approximate value. The calculation is based on a recent market rate of approximately ₹7,300/gram for 24K gold. The final loan amount is subject to verification at our branch.
@@ -553,7 +626,7 @@
                     <!-- Service Card 3: Gold Buyback -->
                     <div id="gold-buyback-service-card" class="group dark-bg p-8 rounded-2xl border border-transparent hover:border-yellow-500/50 transition-all duration-300 transform hover:-translate-y-2 cursor-pointer" data-aos="fade-up" data-aos-delay="400">
                         <div class="gold-gradient-bg w-16 h-16 rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-105">
-                            <i data-lucide="dollar-sign" class="text-black h-8 w-8 transition-transform duration-300 group-hover:rotate-12"></i>
+                            <i data-lucide="indian-rupee" class="text-black h-8 w-8 transition-transform duration-300 group-hover:rotate-12"></i>
                         </div>
                         <h3 class="font-playfair text-2xl font-bold mb-3">Gold Buyback</h3>
                         <p class="text-gray-400">Sell your gold at the best market rates with our transparent and secure buyback program.</p>
@@ -695,7 +768,6 @@
                             <img src="pictures/Rohan Sharma.png" class="w-14 h-14 rounded-full object-cover mr-4" alt="Customer photo of Rohan Sharma">
                             <div>
                                 <h4 class="font-bold text-lg text-white">Rohan Sharma</h4>
-                                <p class="text-sm gold-text">Mumbai, MH</p>
                             </div>
                         </div>
                         <p class="text-gray-400">"The process was incredibly fast and transparent. I got the best value for my gold without any hassle. Highly recommended!"</p>
@@ -706,7 +778,6 @@
                             <img src="pictures/Priya Desai.png" class="w-14 h-14 rounded-full object-cover mr-4" alt="Customer photo of Priya Desai">
                             <div>
                                 <h4 class="font-bold text-lg text-white">Priya Desai</h4>
-                                <p class="text-sm gold-text">Pune, MH</p>
                             </div>
                         </div>
                         <p class="text-gray-400">"Gold 2 Money's team was very professional. They explained everything clearly and made me feel secure about my jewelry."</p>
@@ -717,7 +788,6 @@
                             <img src="pictures/Ankit Verma.png" class="w-14 h-14 rounded-full object-cover mr-4" alt="Customer photo of Ankit Verma">
                             <div>
                                 <h4 class="font-bold text-lg text-white">Ankit Verma</h4>
-                                <p class="text-sm gold-text">Nagpur, MH</p>
                             </div>
                         </div>
                         <p class="text-gray-400">"I needed funds urgently for my business, and Gold 2 Money delivered on their promise of quick disbursal. Excellent service!"</p>
@@ -886,37 +956,60 @@
                     <h2 class="font-playfair text-3xl md:text-4xl font-bold">From Our <span class="gold-gradient-text">Blog</span></h2>
                     <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Insights, tips, and news on gold investments and finance.</p>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                     <!-- Blog Post 1 -->
-                    <div class="dark-bg rounded-2xl overflow-hidden group" data-aos="fade-up">
-                        <img src="pictures/investment tips.png" alt="Blog post image" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6">
-                            <p class="text-sm gold-text mb-2">Finance Tips</p>
-                            <h3 class="font-bold text-xl mb-3 transition-colors duration-300"><a href="blog1.html" class="hover:gold-gradient-text">5 Smart Ways to Use a Gold Loan for Financial Growth</a></h3>
+                    <div class="bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden group border border-yellow-500/20 hover:border-yellow-400 hover:gold-glow transition-all duration-300 flex flex-col" data-aos="fade-up">
+                        <div class="relative overflow-hidden">
+                            <img src="pictures/investment tips.png" alt="Blog post image" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-all duration-300"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center text-sm mb-2">
+                                <p class="gold-text font-semibold">Finance Tips</p>
+                                <p class="text-gray-400">July 30, 2025</p>
+                            </div>
+                            <h3 class="font-bold text-xl mb-3 flex-grow transition-colors duration-300"><a href="blog1.html" class="hover:gold-gradient-text">5 Smart Ways to Use a Gold Loan for Financial Growth</a></h3>
                             <p class="text-gray-400 mb-4">Discover how a gold loan can be a strategic tool for personal and business expansion...</p>
-                            <a href="blog1.html" class="font-semibold gold-text transition-colors duration-300 hover:gold-gradient-text">Read More <i data-lucide="arrow-right" class="inline-block h-4 w-4"></i></a>
+                            <a href="blog1.html" class="font-semibold gold-text transition-colors duration-300 hover:gold-gradient-text group-hover:tracking-wider mt-auto self-start">Read More <i data-lucide="arrow-right" class="inline-block h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform"></i></a>
                         </div>
                     </div>
                     <!-- Blog Post 2 -->
-                     <div class="dark-bg rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="200">
-                        <img src="pictures/gold purity.png" alt="Blog post image" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6">
-                            <p class="text-sm gold-text mb-2">Investment</p>
-                            <h3 class="font-bold text-xl mb-3 transition-colors duration-300"><a href="blog2.html" class="hover:gold-gradient-text">Understanding Gold Purity: A Guide to Carats</a></h3>
+                    <div class="bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden group border border-yellow-500/20 hover:border-yellow-400 hover:gold-glow transition-all duration-300 flex flex-col" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative overflow-hidden">
+                            <img src="pictures/gold purity.png" alt="Blog post image" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-all duration-300"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center text-sm mb-2">
+                                <p class="gold-text font-semibold">Investment</p>
+                                <p class="text-gray-400">July 30, 2025</p>
+                            </div>
+                            <h3 class="font-bold text-xl mb-3 flex-grow transition-colors duration-300"><a href="blog2.html" class="hover:gold-gradient-text">Understanding Gold Purity: A Guide to Carats</a></h3>
                             <p class="text-gray-400 mb-4">Learn the difference between 24K, 22K, and 18K gold and how it affects your loan...</p>
-                            <a href="blog2.html" class="font-semibold gold-text transition-colors duration-300 hover:gold-gradient-text">Read More <i data-lucide="arrow-right" class="inline-block h-4 w-4"></i></a>
+                            <a href="blog2.html" class="font-semibold gold-text transition-colors duration-300 hover:gold-gradient-text group-hover:tracking-wider mt-auto self-start">Read More <i data-lucide="arrow-right" class="inline-block h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform"></i></a>
                         </div>
                     </div>
                     <!-- Blog Post 3 -->
-                     <div class="dark-bg rounded-2xl overflow-hidden group" data-aos="fade-up" data-aos-delay="400">
-                        <img src="pictures/market trends.png" alt="Blog post image" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
-                        <div class="p-6">
-                            <p class="text-sm gold-text mb-2">Market News</p>
-                            <h3 class="font-bold text-xl mb-3 transition-colors duration-300"><a href="blog3.html" class="hover:gold-gradient-text">Gold Market Trends: What to Expect in Late 2025</a></h3>
+                    <div class="bg-black/40 backdrop-blur-lg rounded-2xl overflow-hidden group border border-yellow-500/20 hover:border-yellow-400 hover:gold-glow transition-all duration-300 flex flex-col" data-aos="fade-up" data-aos-delay="400">
+                        <div class="relative overflow-hidden">
+                            <img src="pictures/market trends.png" alt="Blog post image" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-black/50 transition-all duration-300"></div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <div class="flex justify-between items-center text-sm mb-2">
+                                <p class="gold-text font-semibold">Market News</p>
+                                <p class="text-gray-400">July 30, 2025</p>
+                            </div>
+                            <h3 class="font-bold text-xl mb-3 flex-grow transition-colors duration-300"><a href="blog3.html" class="hover:gold-gradient-text">Gold Market Trends: What to Expect in Late 2025</a></h3>
                             <p class="text-gray-400 mb-4">An analysis of current market trends and predictions for gold prices...</p>
-                            <a href="blog3.html" class="font-semibold gold-text transition-colors duration-300 hover:gold-gradient-text">Read More <i data-lucide="arrow-right" class="inline-block h-4 w-4"></i></a>
+                            <a href="blog3.html" class="font-semibold gold-text transition-colors duration-300 hover:gold-gradient-text group-hover:tracking-wider mt-auto self-start">Read More <i data-lucide="arrow-right" class="inline-block h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform"></i></a>
                         </div>
                     </div>
+                </div>
+                <div class="mt-12 text-center" data-aos="fade-up">
+                    <a href="#" class="gold-gradient-bg text-black font-bold py-3 px-8 rounded-lg hover:shadow-xl hover:shadow-yellow-500/30 transition-all duration-300 transform hover:-translate-y-1 inline-block">
+                        View All Posts
+                    </a>
                 </div>
             </div>
         </section>
@@ -951,23 +1044,23 @@
                 <div data-aos="fade-in" data-aos-delay="100">
                     <h4 class="font-bold text-lg mb-4 text-white footer-title-underline">Quick Links</h4>
                     <ul class="space-y-2 font-semibold">
-                        <li><a href="#about" class="text-white transition-colors duration-300 hover:gold-gradient-text">About Us</a></li>
-                        <li><a href="#services" class="text-white transition-colors duration-300 hover:gold-gradient-text">Services</a></li>
-                        <li><a href="#why-us" class="text-white transition-colors duration-300 hover:gold-gradient-text">Why Us</a></li>
-                        <li><a href="#faq" class="text-white transition-colors duration-300 hover:gold-gradient-text">FAQ</a></li>
-                        <li><a href="#blog" class="text-white transition-colors duration-300 hover:gold-gradient-text">Blog</a></li>
-                        <li><a href="#application-form" class="text-white transition-colors duration-300 hover:gold-gradient-text">Contact</a></li>
+                        <li><a href="#about" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">About Us</a></li>
+                        <li><a href="#services" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Services</a></li>
+                        <li><a href="#why-us" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Why Us</a></li>
+                        <li><a href="#faq" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">FAQ</a></li>
+                        <li><a href="#blog" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Blog</a></li>
+                        <li><a href="#application-form" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Contact</a></li>
                     </ul>
                 </div>
                 <!-- Services -->
                 <div data-aos="fade-in" data-aos-delay="200">
                     <h4 class="font-bold text-lg mb-4 text-white footer-title-underline">Services</h4>
                     <ul class="space-y-2 font-semibold">
-                        <li><a href="#services" class="text-white transition-colors duration-300 hover:gold-gradient-text">Gold Loans</a></li>
-                        <li><a href="#services" class="text-white transition-colors duration-300 hover:gold-gradient-text">Buy & Sell Gold</a></li>
-                        <li><a href="#services" class="text-white transition-colors duration-300 hover:gold-gradient-text">Release Pledged Gold</a></li>
-                        <li><a href="#services" class="text-white transition-colors duration-300 hover:gold-gradient-text">Gold Buyback</a></li>
-                        <li><a href="#services" class="text-white transition-colors duration-300 hover:gold-gradient-text">Jewelry Valuation</a></li>
+                        <li><a href="#services" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Gold Loans</a></li>
+                        <li><a href="#services" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Buy & Sell Gold</a></li>
+                        <li><a href="#services" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Release Pledged Gold</a></li>
+                        <li><a href="#services" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Gold Buyback</a></li>
+                        <li><a href="#services" class="footer-link text-white transition-colors duration-300 hover:gold-gradient-text">Jewelry Valuation</a></li>
                     </ul>
                 </div>
                 <!-- Contact -->
@@ -1582,5 +1675,6 @@
             document.getElementById('year').textContent = new Date().getFullYear();
         });
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
