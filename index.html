@@ -1763,45 +1763,33 @@
                 }
             });
 
- // --- Application Form Submission ---
-        document.querySelector("form").addEventListener("submit", async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData();
-            formData.append('name', document.querySelector("[name='name']").value);
-            formData.append('phone', document.querySelector("[name='phone']").value);
-            formData.append('jewelryType', document.querySelector("[name='jewelryType']").value);
-            formData.append('grams', document.querySelector("[name='grams']").value);
-            formData.append('email', document.querySelector("[name='email']").value);
-            formData.append('loanAmount', document.querySelector("[name='loanAmount']").value);
-            formData.append('city', document.querySelector("[name='city']").value);
-            formData.append('message', document.querySelector("[name='message']").value);
-            formData.append('loanType', document.querySelector("[name='loanType']:checked")?.value || "");
-
-            // Get the file input if it exists
-            const fileInput = document.querySelector("[name='loanDocument']");
-            if (fileInput && fileInput.files.length > 0) {
-                formData.append('loanDocument', fileInput.files[0]);
-            }
-
-            try {
-                const response = await fetch("/api/submit-loan-application", {
-                    method: "POST",
-                    body: formData // Don't set Content-Type header, let the browser set it with the boundary
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.message || 'Something went wrong');
-                }
-
-                const data = await response.json();
-                alert("Form submitted successfully!");
-                document.querySelector("form").reset();
-            } catch (err) {
-                console.error(err);
-                alert(err.message || "Something went wrong. Please try again.");
-            }
+ // --- Application Form Submission (Google Apps Script/Custom Endpoint) ---
+        document.querySelector("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        fetch("https://script.google.com/macros/s/AKfycbyuOEOSI-AApVUYNl5LUyNies7RmO-Vw5m5j9Tg-7codIzwCUp3kSdq01p03U3TMhZJ/exec", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+        fullName: document.querySelector("[name='name']").value,
+        phoneNumber: document.querySelector("[name='phone']").value,
+        jewelryType: document.querySelector("[name='jewelryType']").value,
+        weight: document.querySelector("[name='grams']").value,
+        email: document.querySelector("[name='email']").value,
+        loanAmount: document.querySelector("[name='loanAmount']").value,
+        city: document.querySelector("[name='city']").value,
+        message: document.querySelector("[name='message']").value,
+        loanType: document.querySelector("[name='loanType']:checked")?.value || ""
+        })
+        })
+        .then(res => res.json())
+        .then(data => {
+        alert("Form submitted successfully!");
+        document.querySelector("form").reset();
+        })
+        .catch(err => {
+        console.error(err);
+        alert("Something went wrong. Please try again.");
+        });
         });
             
             // --- Set current year in footer ---
