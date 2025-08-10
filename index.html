@@ -3,7 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gold 2 Money - Premium Gold Loan Services</title>
+    <title>Gold 2 Money - Top Gold Loan Services in Thane | Best Gold Loan Rates</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Get instant gold loans at best interest rates in Thane. Gold 2 Money offers transparent valuation, quick processing, and secure gold loan services with flexible repayment options.">
+    <meta name="keywords" content="gold loan, gold loans in thane, gold loan services, instant gold loan, gold valuation, gold loan interest rates, gold loan takeover">
+    <meta name="author" content="Gold 2 Money">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Gold 2 Money - Premium Gold Loan Services in Thane">
+    <meta property="og:description" content="Get instant gold loans at best interest rates. Transparent valuation, quick processing, and secure gold loan services with flexible repayment options.">
+    <meta property="og:image" content="pictures/GOLD2MONEY FINAL LOGO.png">
+    <meta property="og:url" content="https://www.gold2money.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Gold 2 Money - Premium Gold Loan Services in Thane">
+    <meta name="twitter:description" content="Get instant gold loans at best interest rates. Transparent valuation, quick processing, and secure gold loan services.">
+    <meta name="twitter:image" content="pictures/GOLD2MONEY FINAL LOGO.png">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.gold2money.com">
     
     <!-- Favicon -->
     <link rel="icon" href="pictures/GOLD2MONEY FINAL LOGO.png" type="image/png">
@@ -261,6 +283,65 @@
     
     <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "name": "Gold 2 Money",
+      "image": "pictures/GOLD2MONEY FINAL LOGO.png",
+      "description": "Premium gold loan services with transparent valuation and competitive interest rates in Thane.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "401, Shree Datta Tower, B-Wing, Dr. Moose Road, Talaopali",
+        "addressLocality": "Thane",
+        "addressRegion": "Maharashtra",
+        "postalCode": "400601",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "19.2016",
+        "longitude": "72.9714"
+      },
+      "url": "https://www.gold2money.com",
+      "telephone": "+919594607030",
+      "openingHours": "Mo-Sa 09:00-18:00",
+      "priceRange": "₹₹",
+      "sameAs": [
+        "https://www.facebook.com/gold2money",
+        "https://www.instagram.com/gold2money"
+      ]
+    }
+    </script>
+    
+    <!-- Business Information Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LoanOrCredit",
+      "name": "Gold Loan Services",
+      "loanType": "Secured Loan",
+      "description": "Get instant gold loans with competitive interest rates and flexible repayment options.",
+      "provider": {
+        "@type": "FinancialService",
+        "name": "Gold 2 Money",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Thane",
+          "addressRegion": "Maharashtra",
+          "addressCountry": "IN"
+        }
+      },
+      "areaServed": {
+        "@type": "City",
+        "name": "Thane"
+      },
+      "feesAndCommissionsSpecification": "Transparent valuation process with no hidden charges",
+      "interestRate": "Competitive rates starting from 12% per annum"
+    }
+    </script>
 </head>
 <body class="antialiased">
 
@@ -852,7 +933,7 @@
                                     <label class="block text-sm font-medium text-gray-300 mb-2">Loan Type (Optional)</label>
                                     <div class="flex space-x-6">
                                         <label class="inline-flex items-center cursor-pointer">
-                                            <input type="radio" name="loanType" value="Fresh" class="form-radio text-yellow-500 focus:ring-yellow-400 h-5 w-5">
+                                            <input type="radio" name="loanType" value="Fresh" class="form-radio text-yellow-500 focus:ring-yellow-400 h-5 w-5" checked>
                                             <span class="ml-2 text-gray-200 font-semibold">Fresh</span>
                                         </label>
                                         <label class="inline-flex items-center cursor-pointer">
@@ -860,6 +941,13 @@
                                             <span class="ml-2 text-gray-200 font-semibold">Takeover</span>
                                         </label>
                                     </div>
+                                </div>
+                            </div>
+                            <div id="pdfUploadSection" class="hidden mt-6">
+                                <div class="md:col-span-2">
+                                    <label for="loanDocument" class="block text-sm font-medium text-gray-300 mb-2">Previous Loan Document (PDF)</label>
+                                    <input type="file" id="loanDocument" name="loanDocument" accept=".pdf" class="w-full form-input p-3 rounded-lg text-gray-300 bg-black/40">
+                                    <p class="mt-1 text-sm text-gray-400">Please upload your previous loan document in PDF format</p>
                                 </div>
                             </div>
                             <div class="mt-6 text-left">
@@ -1577,6 +1665,24 @@
                 observer.observe(processSection);
             }
 
+            // --- Handle Loan Type Change for File Upload ---
+            const loanTypeRadios = document.querySelectorAll('input[name="loanType"]');
+            const pdfUploadSection = document.getElementById('pdfUploadSection');
+            const loanDocumentInput = document.getElementById('loanDocument');
+
+            loanTypeRadios.forEach(radio => {
+                radio.addEventListener('change', (event) => {
+                    if (event.target.value === 'Takeover') {
+                        pdfUploadSection.classList.remove('hidden');
+                        loanDocumentInput.required = true;
+                    } else {
+                        pdfUploadSection.classList.add('hidden');
+                        loanDocumentInput.required = false;
+                        loanDocumentInput.value = ''; // Clear the file input if user switches back
+                    }
+                });
+            });
+
             // --- Animate Number Count Up ---
             function animateCountUp(element, start, end, duration) {
                 let startTime = null;
@@ -1657,24 +1763,51 @@
                 }
             });
 
-            // --- Application Form Submission ---
-            const loanForm = document.getElementById('loan-form');
-            const formMessage = document.getElementById('form-message');
-            loanForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                formMessage.textContent = 'Thank you! Your application has been submitted successfully. We will contact you shortly.';
-                formMessage.classList.remove('hidden');
-                formMessage.classList.add('text-green-400');
-                loanForm.reset();
-                setTimeout(() => {
-                    formMessage.classList.add('hidden');
-                }, 5000);
-            });
+ // --- Application Form Submission ---
+        document.querySelector("form").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            formData.append('name', document.querySelector("[name='name']").value);
+            formData.append('phone', document.querySelector("[name='phone']").value);
+            formData.append('jewelryType', document.querySelector("[name='jewelryType']").value);
+            formData.append('grams', document.querySelector("[name='grams']").value);
+            formData.append('email', document.querySelector("[name='email']").value);
+            formData.append('loanAmount', document.querySelector("[name='loanAmount']").value);
+            formData.append('city', document.querySelector("[name='city']").value);
+            formData.append('message', document.querySelector("[name='message']").value);
+            formData.append('loanType', document.querySelector("[name='loanType']:checked")?.value || "");
 
+            // Get the file input if it exists
+            const fileInput = document.querySelector("[name='loanDocument']");
+            if (fileInput && fileInput.files.length > 0) {
+                formData.append('loanDocument', fileInput.files[0]);
+            }
+
+            try {
+                const response = await fetch("/api/submit-loan-application", {
+                    method: "POST",
+                    body: formData // Don't set Content-Type header, let the browser set it with the boundary
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Something went wrong');
+                }
+
+                const data = await response.json();
+                alert("Form submitted successfully!");
+                document.querySelector("form").reset();
+            } catch (err) {
+                console.error(err);
+                alert(err.message || "Something went wrong. Please try again.");
+            }
+        });
+            
             // --- Set current year in footer ---
             document.getElementById('year').textContent = new Date().getFullYear();
         });
-    </script>
+    </script>-
     <script src="script.js"></script>
 </body>
 </html>

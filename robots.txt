@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.gold2money.com/sitemap.xml
+
+# Allow search engines to crawl all content
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/

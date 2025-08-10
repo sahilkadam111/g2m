@@ -2,4 +2,8 @@
 .DS_Store
 Thumbs.db
 
-# Can add other folders like /node_modules/ if you use them later
+# Node.js
+node_modules/
+.env
+uploads/
+loan_applications.xlsx
